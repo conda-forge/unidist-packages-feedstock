@@ -1,5 +1,5 @@
 {% set name = "unidist" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name }}-packages
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 5b2cc602604f75ed6a9323cd4cd0585a1c806d3465f50ecb7ff31772b80f2edb
+  sha256: daf1061ce105eae3ba17aea20b2adde1519b526e872fba5accdc49a36cecf173
 
 build:
   noarch: python
