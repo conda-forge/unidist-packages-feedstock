@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -81,6 +81,9 @@ outputs:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - ray-default >=1.4.0
+        # aioredis 2.x breaks Ray
+        # ref: https://github.com/conda-forge/ray-packages-feedstock/issues/38
+        - aioredis <2
     test:
       imports:
         - unidist
