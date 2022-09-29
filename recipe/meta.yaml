@@ -1,5 +1,5 @@
 {% set name = "unidist" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name }}-packages
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 5b2cc602604f75ed6a9323cd4cd0585a1c806d3465f50ecb7ff31772b80f2edb
+  sha256: daf1061ce105eae3ba17aea20b2adde1519b526e872fba5accdc49a36cecf173
 
 build:
   noarch: python
   number: 0
 
 # the outputs map the unidist options on PyPI (see upstream definition
-# https://github.com/modin-project/unidist/blob/0.1.0/setup.py#L39-L55)
+# https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
 # from "unidist[<option>]" to "unidist-<option>" as a conda-forge package
 outputs:
   - name: unidist-all
@@ -38,8 +38,6 @@ outputs:
     build:
       noarch: python
       script: python -m pip install . --ignore-installed -vv
-      entry_points:
-        - unidist = unidist.cli.__main__:main
     requirements:
       host:
         - pip
@@ -55,7 +53,6 @@ outputs:
         # unidist has multiprocessing and python backends by default so we test both
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('python'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('multiprocessing'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
-        - unidist --help
 
   - name: unidist-dask
     build:
@@ -84,9 +81,6 @@ outputs:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - ray-default >=1.4.0
-        # aioredis 2.x breaks Ray
-        # ref: https://github.com/conda-forge/ray-packages-feedstock/issues/38
-        - aioredis <2
     test:
       imports:
         - unidist
@@ -103,12 +97,11 @@ outputs:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
-        - msgpack-python
+        - msgpack-python >=1.0.0
     test:
-      # We do not run actual tests for mpi backend because
-      # those are currently failing on Windows.
-      # See more in https://github.com/modin-project/unidist/issues/69.
-      # We should run the tests after the issue is fixed.
+      # Currently we do not run actual tests for mpi backend because
+      # MPI requires more graceful set up to be run in docker container.
+      # Try out to find a fix.
       imports:
         - unidist
 
