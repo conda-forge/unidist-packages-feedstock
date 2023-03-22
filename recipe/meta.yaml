@@ -50,9 +50,9 @@ outputs:
       imports:
         - unidist
       commands:
-        # unidist has multiprocessing and python backends by default so we test both
-        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('python'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
-        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('multiprocessing'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
+        # unidist has "pymp" and "pyseq" backends by default so we test both
+        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('pyseq'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
+        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('pymp'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-dask
     build:
@@ -80,7 +80,7 @@ outputs:
       run:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
-        - ray-default >=1.4.0
+        - ray-default >=1.13.0
         # aioredis 2.x breaks Ray
         # ref: https://github.com/conda-forge/ray-packages-feedstock/issues/38
         - aioredis <2
