@@ -1,5 +1,5 @@
 {% set name = "unidist" %}
-{% set version = "0.2.2" %}
+{% set version = "0.3.0" %}
 
 package:
   name: {{ name }}-packages
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8c74d20c8f615cab064cb1e09bbd16597a6172115588dd7b7f687037aa9d3698
+  sha256: 113eda26b2f0ada163128d3af02a9dcfe85121257d17a250687e1fc48c59fc27
 
 build:
   noarch: python
@@ -50,9 +50,9 @@ outputs:
       imports:
         - unidist
       commands:
-        # unidist has multiprocessing and python backends by default so we test both
-        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('python'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
-        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('multiprocessing'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
+        # unidist has "pymp" and "pyseq" backends by default so we test both
+        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('pyseq'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
+        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('pymp'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-dask
     build:
@@ -80,7 +80,7 @@ outputs:
       run:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
-        - ray-default >=1.4.0
+        - ray-default >=1.13.0
         # aioredis 2.x breaks Ray
         # ref: https://github.com/conda-forge/ray-packages-feedstock/issues/38
         - aioredis <2
