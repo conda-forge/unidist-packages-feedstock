@@ -1,11 +1,11 @@
-About unidist-packages
-======================
+About unidist-packages-feedstock
+================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/unidist-packages-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/modin-project/unidist
 
 Package license: Apache-2.0 AND LicenseRef-Public-Domain
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/unidist-packages-feedstock/blob/main/LICENSE.txt)
 
 Summary: Unified Distributed Execution
 
