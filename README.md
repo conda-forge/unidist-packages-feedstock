@@ -16,7 +16,7 @@ Documentation: https://unidist.readthedocs.io/
 unidist is a framework that is intended to provide the unified API
 for distributed execution by supporting various performant execution backends.
 At the moment the following backends are supported under the hood:
-Ray, MPI, Dask, Python Multiprocessing, as well as a sequential Python backend for debugging.
+Ray, MPI, Dask, Python Multiprocessing (`pymp`), as well as a Python Sequential backend (`pyseq`) for debugging.
 
 
 Current build status

@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -120,7 +120,7 @@ about:
     unidist is a framework that is intended to provide the unified API
     for distributed execution by supporting various performant execution backends.
     At the moment the following backends are supported under the hood:
-    Ray, MPI, Dask, Python Multiprocessing, as well as a sequential Python backend for debugging.
+    Ray, MPI, Dask, Python Multiprocessing (pymp), as well as a Python Sequential (pyseq) backend for debugging.
   doc_url: https://unidist.readthedocs.io/
   dev_url: https://github.com/modin-project/unidist
 
