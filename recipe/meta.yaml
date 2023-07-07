@@ -84,6 +84,8 @@ outputs:
         # aioredis 2.x breaks Ray
         # ref: https://github.com/conda-forge/ray-packages-feedstock/issues/38
         - aioredis <2
+        # https://github.com/modin-project/unidist/issues/324
+        - pydantic <2
     test:
       imports:
         - unidist
