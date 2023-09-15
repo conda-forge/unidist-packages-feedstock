@@ -1,5 +1,6 @@
 {% set name = "unidist" %}
 {% set version = "0.4.1" %}
+{% set build = build or 3 %}
 
 package:
   name: {{ name }}-packages
@@ -11,7 +12,7 @@ source:
 
 build:
   noarch: python
-  number: 2
+  number: {{ build }}
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -103,7 +104,7 @@ outputs:
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
         # this variable is defined in conda_build_config.yaml
-        - {{ mpi }}
+        - {{ mpi }}  # [build == 100]
         - msgpack-python >=1.0.0
     test:
       # Currently we do not run actual tests for mpi backend because

@@ -1,3 +1,6 @@
 mpi:
   - mpich    # [not win]
   - msmpi    # [win]
+
+build:
+  - 100      # [mpi == "mpich"]
