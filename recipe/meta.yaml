@@ -42,8 +42,11 @@ outputs:
       host:
         - pip
         - python >=3.7.1
-        - {{ compiler('cxx') }}
         - cython
+      build:
+        - {{ compiler('cxx') }}
+        - cython                    # [build_platform != target_platform]
+        - python                    # [build_platform != target_platform]
       run:
         - python >=3.7.1
         - packaging
