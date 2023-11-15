@@ -10,7 +10,6 @@ source:
   sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
 
 build:
-  noarch: python
   number: 1
 
 # the outputs map the unidist options on PyPI (see upstream definition
