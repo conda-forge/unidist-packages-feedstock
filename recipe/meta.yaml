@@ -105,6 +105,7 @@ outputs:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
+        - mpich
         - msgpack-python >=1.0.0
         - psutil
     test:
