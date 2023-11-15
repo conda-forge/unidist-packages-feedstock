@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -112,6 +112,8 @@ outputs:
       # Try out to find a fix.
       imports:
         - unidist
+      commands:
+        - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('mpi'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
 about:
   home: https://github.com/modin-project/unidist
