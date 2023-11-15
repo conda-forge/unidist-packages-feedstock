@@ -45,8 +45,6 @@ outputs:
         - python >=3.7.1
       build:
         - {{ compiler('cxx') }}
-        - cython                       # [build_platform != target_platform]
-        - python >=3.7.1               # [build_platform != target_platform]
       run:
         - python >=3.7.1
         - packaging
