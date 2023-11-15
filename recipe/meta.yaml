@@ -106,6 +106,7 @@ outputs:
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
         - msgpack-python >=1.0.0
+        - psutil
     test:
       # Currently we do not run actual tests for mpi backend because
       # MPI requires more graceful set up to be run in docker container.
