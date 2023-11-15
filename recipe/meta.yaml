@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d57b0427d1ba0ef50d697d867745cc9d0e258bd545e6c9f680ede30814f3b616
+  url: https://github.com/modin-project/unidist/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
 
 build:
   noarch: python
