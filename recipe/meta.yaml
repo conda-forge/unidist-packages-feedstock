@@ -10,8 +10,7 @@ source:
   sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
 
 build:
-  noarch: python
-  number: 0
+  number: 1
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -106,6 +105,7 @@ outputs:
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
         - msgpack-python >=1.0.0
+        - psutil
     test:
       # Currently we do not run actual tests for mpi backend because
       # MPI requires more graceful set up to be run in docker container.
