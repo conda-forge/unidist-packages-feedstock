@@ -11,6 +11,7 @@ source:
 
 build:
   number: 2
+  skip: true  # [py>=312]
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -24,7 +25,7 @@ outputs:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - {{ pin_subpackage('unidist-dask', exact=True) }}
-        - {{ pin_subpackage('unidist-ray', exact=True) }}
+        - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<312]
         - {{ pin_subpackage('unidist-mpi', exact=True) }}
     test:
       imports:
@@ -69,6 +70,8 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('dask'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-ray
+    build:
+      skip: true  # [py>=312]
     requirements:
       host:
         - python >=3.7.1
