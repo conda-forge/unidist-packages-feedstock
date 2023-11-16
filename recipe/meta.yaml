@@ -10,8 +10,7 @@ source:
   sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
 
 build:
-  number: 2
-  skip: true  # [py>=312]
+  number: 3
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
@@ -20,12 +19,12 @@ outputs:
   - name: unidist-all
     requirements:
       host:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
       run:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - {{ pin_subpackage('unidist-dask', exact=True) }}
-        - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<312]
+        - {{ pin_subpackage('unidist-ray', exact=True) }}
         - {{ pin_subpackage('unidist-mpi', exact=True) }}
     test:
       imports:
@@ -39,11 +38,11 @@ outputs:
       host:
         - pip
         - cython
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
       build:
         - {{ compiler('cxx') }}
       run:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
         - packaging
         - cloudpickle
     test:
@@ -57,9 +56,9 @@ outputs:
   - name: unidist-dask
     requirements:
       host:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
       run:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - dask >=2.22.0
         - distributed >=2.22.0
@@ -70,13 +69,11 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('dask'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-ray
-    build:
-      skip: true  # [py>=312]
     requirements:
       host:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
       run:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - ray-default >=1.13.0
         # aioredis 2.x breaks Ray
@@ -93,9 +90,9 @@ outputs:
   - name: unidist-mpi
     requirements:
       host:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
       run:
-        - python >=3.7.1,<3.12
+        - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
         - msgpack-python >=1.0.0
