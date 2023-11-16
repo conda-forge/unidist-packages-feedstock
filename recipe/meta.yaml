@@ -10,15 +10,13 @@ source:
   sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
 
 build:
-  number: 1
+  number: 2
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
 # from "unidist[<option>]" to "unidist-<option>" as a conda-forge package
 outputs:
   - name: unidist-all
-    build:
-      noarch: python
     requirements:
       host:
         - python >=3.7.1
@@ -35,7 +33,6 @@ outputs:
 
   - name: unidist
     build:
-      noarch: python
       script: python -m pip install . --ignore-installed -vv
     requirements:
       host:
@@ -57,8 +54,6 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('pymp'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-dask
-    build:
-      noarch: python
     requirements:
       host:
         - python >=3.7.1
@@ -74,8 +69,6 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('dask'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-ray
-    build:
-      noarch: python
     requirements:
       host:
         - python >=3.7.1
@@ -95,8 +88,6 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('ray'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-mpi
-    build:
-      noarch: python
     requirements:
       host:
         - python >=3.7.1
