@@ -20,9 +20,9 @@ outputs:
   - name: unidist-all
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - {{ pin_subpackage('unidist-dask', exact=True) }}
         - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<312]
@@ -39,11 +39,11 @@ outputs:
       host:
         - pip
         - cython
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       build:
         - {{ compiler('cxx') }}
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - packaging
         - cloudpickle
     test:
@@ -57,9 +57,9 @@ outputs:
   - name: unidist-dask
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - dask >=2.22.0
         - distributed >=2.22.0
@@ -93,9 +93,9 @@ outputs:
   - name: unidist-mpi
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
         - msgpack-python >=1.0.0
