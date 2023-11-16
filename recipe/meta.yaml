@@ -24,7 +24,7 @@ outputs:
         - python
         - {{ pin_subpackage('unidist', exact=True) }}
         - {{ pin_subpackage('unidist-dask', exact=True) }}
-        - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<=311]
+        - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<312]
         - {{ pin_subpackage('unidist-mpi', exact=True) }}
     test:
       imports:
@@ -70,13 +70,14 @@ outputs:
 
   - name: unidist-ray
     build:
-      skip: true  # [py>311]
+      # Ray does not have builds for python>=3.12
+      skip: true  # [py>=312]
     requirements:
       host:
         - python
       run:
         - python
-        - {{ pin_subpackage('unidist', exact=True) }}  # [py<=311]
+        - {{ pin_subpackage('unidist', exact=True) }}
         - ray-default >=1.13.0
         # aioredis 2.x breaks Ray
         # ref: https://github.com/conda-forge/ray-packages-feedstock/issues/38
