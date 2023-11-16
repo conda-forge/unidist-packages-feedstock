@@ -10,23 +10,22 @@ source:
   sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
 
 build:
-  number: 1
+  number: 2
+  skip: true  # [py>=312]
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
 # from "unidist[<option>]" to "unidist-<option>" as a conda-forge package
 outputs:
   - name: unidist-all
-    build:
-      noarch: python
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - {{ pin_subpackage('unidist-dask', exact=True) }}
-        - {{ pin_subpackage('unidist-ray', exact=True) }}
+        - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<312]
         - {{ pin_subpackage('unidist-mpi', exact=True) }}
     test:
       imports:
@@ -35,17 +34,16 @@ outputs:
 
   - name: unidist
     build:
-      noarch: python
       script: python -m pip install . --ignore-installed -vv
     requirements:
       host:
         - pip
         - cython
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       build:
         - {{ compiler('cxx') }}
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - packaging
         - cloudpickle
     test:
@@ -57,13 +55,11 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('pymp'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-dask
-    build:
-      noarch: python
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - dask >=2.22.0
         - distributed >=2.22.0
@@ -75,12 +71,12 @@ outputs:
 
   - name: unidist-ray
     build:
-      noarch: python
+      skip: true  # [py>=312]
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - ray-default >=1.13.0
         # aioredis 2.x breaks Ray
@@ -95,13 +91,11 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('ray'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-mpi
-    build:
-      noarch: python
     requirements:
       host:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
       run:
-        - python >=3.7.1
+        - python >=3.7.1,<3.12
         - {{ pin_subpackage('unidist', exact=True) }}
         - mpi4py >=3.0.3
         - msgpack-python >=1.0.0
