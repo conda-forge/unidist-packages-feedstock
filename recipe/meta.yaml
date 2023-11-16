@@ -24,7 +24,7 @@ outputs:
         - python >=3.7.1
         - {{ pin_subpackage('unidist', exact=True) }}
         - {{ pin_subpackage('unidist-dask', exact=True) }}
-        - {{ pin_subpackage('unidist-ray', exact=True) }}
+        - {{ pin_subpackage('unidist-ray', exact=True) }}  # [py<=311]
         - {{ pin_subpackage('unidist-mpi', exact=True) }}
     test:
       imports:
@@ -69,6 +69,8 @@ outputs:
         - python -c "import unidist; import unidist.config as cfg; cfg.Backend.put('dask'); unidist.init(); ref = unidist.put(1); unidist.get(ref)"
 
   - name: unidist-ray
+    build:
+      skip: true  # [py>311]
     requirements:
       host:
         - python >=3.7.1
