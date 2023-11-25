@@ -1,5 +1,5 @@
 {% set name = "unidist" %}
-{% set version = "0.5.0" %}
+{% set version = "0.5.1" %}
 
 package:
   name: {{ name }}-packages
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/modin-project/unidist/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 12ab6265519dee1949e1becdf41b457ef4da5e5a51ec507c1fcd1f5b962c5f01
+  sha256: 33ccf118927075d1e198fcd0783e727860ff2d2a7a3f72b4dffbe8f1c59fb81e
 
 build:
-  number: 3
+  number: 0
 
 # the outputs map the unidist options on PyPI (see upstream definition
 # https://github.com/modin-project/unidist/blob/0.2.0/setup.py#L6-L11)
