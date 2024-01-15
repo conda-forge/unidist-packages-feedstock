@@ -58,9 +58,6 @@ outputs:
 
   - name: unidist-dask
     requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - python
       run:
@@ -79,9 +76,6 @@ outputs:
       # Ray does not have builds for python>=3.12
       skip: true  # [py>=312]
     requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - python
       run:
@@ -101,9 +95,6 @@ outputs:
 
   - name: unidist-mpi
     requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - python
       run:
