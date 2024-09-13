@@ -1,5 +1,5 @@
 {% set name = "unidist" %}
-{% set version = "0.7.0" %}
+{% set version = "0.7.1" %}
 
 package:
   name: {{ name }}-packages
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/modin-project/unidist/archive/refs/tags/{{ version }}.tar.gz
-  sha256: bb7802225ccd1b4963fc9a1c2b245f7e7120f4f167c6a3c1a3193844956ec537
+  sha256: 9bae91f0bbc33af3b55948990f69400ee819dfda9c635286e6917aebd7f24791
 
 build:
   number: 0
@@ -41,6 +41,7 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - cython                                 # [build_platform != target_platform]
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         - pip
         - cython
