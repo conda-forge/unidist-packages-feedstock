@@ -10,7 +10,7 @@ source:
   sha256: 9bae91f0bbc33af3b55948990f69400ee819dfda9c635286e6917aebd7f24791
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<39]
 
 # the outputs map the unidist options on PyPI (see upstream definition
