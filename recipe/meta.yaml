@@ -44,6 +44,7 @@ outputs:
         - {{ stdlib("c") }}
       host:
         - pip
+        - setuptools
         - cython
         - python
       run:
