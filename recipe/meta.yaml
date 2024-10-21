@@ -1,5 +1,5 @@
 {% set name = "unidist" %}
-{% set version = "0.7.1" %}
+{% set version = "0.7.2" %}
 
 package:
   name: {{ name }}-packages
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/modin-project/unidist/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 9bae91f0bbc33af3b55948990f69400ee819dfda9c635286e6917aebd7f24791
+  sha256: 4306da65fa22239b99349aade3c1d31ab245d25c7c2250f152c8eeb2e86d922f
 
 build:
   number: 0
